@@ -121,4 +121,26 @@ class figgs:
 
             api_url = "https://api.figgs.ai/chat_completion"
             response = requests.post(api_url, headers=headers,json=payload,cookies=cookies,verify=False)
-            return response
+            try:
+                response = requests.post(api_url, headers=headers, json=payload, cookies=cookies, verify=False)
+                response.raise_for_status()
+                
+                full_text = ""
+                for line in response.iter_lines():
+                    if line:
+                        line_str = line.decode('utf-8')
+                        if line_str.startswith("data: "):
+                            json_str = line_str.split("data: ", 1)[1]
+                            try:
+                                if json_str.strip():
+                                    data = json.loads(json_str)
+                                    if isinstance(data, dict) and "text" in data:
+                                        full_text += data["text"] + " "
+                            except json.JSONDecodeError as e:
+                                print()                
+                                
+            except requests.exceptions.RequestException as e:
+                print(f"Request failed: {e}")
+        else:
+            print("There is no url specified")
+        return full_text.strip()
