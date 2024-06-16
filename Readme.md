@@ -33,7 +33,7 @@ figs = figgs(
 Kullanıcı adı değiştirmek için yapmanız gereken sadece şudur:
 
 ```python
-client.change_user_name("your_username")
+figs.change_user_name("your_username")
 ```
 
 ## Açıklama Değiştirme
@@ -41,7 +41,7 @@ client.change_user_name("your_username")
 Kullanıcı adı değiştirmek için yapmanız gereken sadece şudur:
 
 ```python
-client.change_bio("your-desc")
+figs.change_bio("your-desc")
 ```
 
 ## Nsfw gibi ayarları True, False yapmak için
@@ -49,7 +49,7 @@ client.change_bio("your-desc")
 Nsfw gibi ayarları True, False yaomanız gereken sadece şudur:
 
 ```python
-client.change_suggistives(True, False)
+figs.change_suggistives(True, False)
 ```
 
 ## Herhangi bir bota mesaj gönderme
@@ -58,7 +58,8 @@ client.change_suggistives(True, False)
 Figgs.ai'daki herhangi bir bota mesaj göndermek için room_id ve bot_id gerekmekte. Herhangi bir bota girdiğinizde onları link kısmında görebilirsiniz. Birisi sağdaki room_id için soldaki bot_id için.
 
 ```python
-client.send_message("your-message", "your-room-id", "your-bot-id")
+response = figs.send_message("your-message", "your-room-id", "your-bot-id")
+print(response)
 ```
 
 ## Şimdilik bu kadar.
