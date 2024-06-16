@@ -58,7 +58,11 @@ figs.change_suggistives(True, False)
 Figgs.ai'daki herhangi bir bota mesaj göndermek için room_id ve bot_id gerekmekte. Herhangi bir bota girdiğinizde onları link kısmında görebilirsiniz. Birisi sağdaki room_id için soldaki bot_id için.
 
 ```python
-response = figs.send_message("your-message", "your-room-id", "your-bot-id")
+response = figs.send_message(
+    "your-message",
+    "your-room-id",
+    "your-bot-id"
+)
 print(response)
 ```
 
