@@ -4,7 +4,7 @@ Bu bir python clienti Figgs.ai sitesi için.
 
 ## Kurulum
 
-Bu python kütüphanesini bu pip ile kullanabilirsiniz:
+Bu python kütüphanesini bu pip ile gerekli kütüphaneleri indirebilirsiniz:
 
 ```bash
 pip install figgs-ai
