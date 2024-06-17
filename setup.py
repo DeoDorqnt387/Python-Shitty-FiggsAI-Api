@@ -17,7 +17,7 @@ setup(
     include_package_data=True,
     long_description_content_type='text/markdown',
     author='Pandora',
-    author_email='yigitcankocabiyik@gmail.com',
+    author_email='kafaatmadi@gmail.com',
     url="https://github.com/DeoDorqnt387/Unofficial-the-worst-figgs.ai-API.git",
     description='a simple figgs.ai api',
     long_description=desc(),
