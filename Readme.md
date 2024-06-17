@@ -12,13 +12,11 @@ pip install figgs-ai
 
 ## Kullanım
 
-İlk olarak `figgs` clientini çağırın ve import deriken `figgs` Yazın:
-
 ```python
 from figgs import figgs
 ```
 
-Sonra, `figgs` sınıfı için, auth, gerekmekte `https://www.figgs.ai/` bu siteye girip kayıt olduktan sonra sağ tık, incele, uygulamalar(Apllications) kısmından cookies'i bulun ve oradaki `figgs-auth-prod` kısmını kopyalayın:
+Sonra, `figgs` sınıfı için, auth, gerekmekte `https://www.figgs.ai/` bu siteye girip kayıt olduktan sonra sağ tık, incele, uygulamalar(Apllications) kısmından cookies'i bulun ve oradaki `figgs-auth-prod` kısmını kopyalayın ve "your-auth-key" kısmına yapıştırın:
 
 ```python
 figs = figgs(
@@ -38,7 +36,7 @@ figs.change_user_name("your_username")
 
 ## Açıklama Değiştirme
 
-Kullanıcı adı değiştirmek için yapmanız gereken sadece şudur:
+Açıklamayı değiştirmek için yapmanız gereken sadece şudur:
 
 ```python
 figs.change_bio("your-desc")
@@ -55,7 +53,7 @@ figs.change_suggistives(True, False)
 ## Herhangi bir bota mesaj gönderme
 
 
-Figgs.ai'daki herhangi bir bota mesaj göndermek için room_id ve bot_id gerekmekte. Herhangi bir bota girdiğinizde onları link kısmında görebilirsiniz. Birisi sağdaki room_id için soldaki bot_id için.
+Figgs.ai'daki herhangi bir bota mesaj göndermek için room_id ve bot_id gerekmekte. Herhangi bir bota girdiğinizde onları link kısmında görebilirsiniz. Sağdaki room_id için soldaki bot_id için.
 
 ```python
 response = figs.send_message(
