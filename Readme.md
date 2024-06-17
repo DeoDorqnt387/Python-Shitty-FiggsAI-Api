@@ -60,7 +60,7 @@ figs.change_bio("your-desc")
 
 ## To make settings like nsfw True, False
 
-You just need to make settings like nsfw True, False:
+You just need to use this make settings like nsfw True, False:
 
 ```python
 figs.change_suggistives(True, False)
