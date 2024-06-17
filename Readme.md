@@ -2,6 +2,26 @@
 
 Bu bir python clienti Figgs.ai sitesi için.
 
+Örnek Kullanım:
+
+```python
+from figgs import figgs
+
+auth = "your-auth-key"
+
+figs = figgs(
+    auth=auth,
+)
+
+room_id = "room-id"
+bot_id = "bot-id"
+
+while True:
+    your_message = input("You: ")
+    response = figs.send_message(your_message, room_id, bot_id)
+    print(response)
+```
+
 ## Kurulum
 
 Bu python kütüphanesini bu pip ile gerekli kütüphaneleri indirebilirsiniz:
