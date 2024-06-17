@@ -1,8 +1,4 @@
-# Figgs.ai Python Kütüphanesi
-
-Bu bir python clienti Figgs.ai sitesi için.
-
-Örnek Kullanım:
+Example Usage:
 
 ```python
 from figgs import figgs
@@ -22,21 +18,21 @@ while True:
     print(response)
 ```
 
-## Kurulum
+## Installation
 
-Bu python kütüphanesini bu pip ile gerekli kütüphaneleri indirebilirsiniz:
+PIP:
 
 ```bash
 pip install figgs-ai
 ```
 
-## Kullanım
+## Usage
 
 ```python
 from figgs import figgs
 ```
 
-Sonra, `figgs` sınıfı için, auth, gerekmekte `https://www.figgs.ai/` bu siteye girip kayıt olduktan sonra sağ tık, incele, uygulamalar(Apllications) kısmından cookies'i bulun ve oradaki `figgs-auth-prod` kısmını kopyalayın ve "your-auth-key" kısmına yapıştırın:
+To use the code below you need auth, you need to go to this site `https://www.figgs.ai/` and after registering, right click, inspect, find cookies in the applications section and copy the `figgs-auth-prod` part and paste it into the "your-auth-key" section:
 
 ```python
 figs = figgs(
@@ -44,36 +40,36 @@ figs = figgs(
 )
 ```
 
-Şimdi bazı metodları kullanabilirsiniz:
+Now you can use some methods:
 
-## Kullanıcı adı değiştirme
+## Change username
 
-Kullanıcı adı değiştirmek için yapmanız gereken sadece şudur:
+To change your username, all you need to do is this:
 
 ```python
 figs.change_user_name("your_username")
 ```
 
-## Açıklama Değiştirme
+## Change Description
 
-Açıklamayı değiştirmek için yapmanız gereken sadece şudur:
+To change the description, all you need to do is this:
 
 ```python
 figs.change_bio("your-desc")
 ```
 
-## Nsfw gibi ayarları True, False yapmak için
+## To make settings like nsfw True, False
 
-Nsfw gibi ayarları True, False yaomanız gereken sadece şudur:
+You just need to make settings like nsfw True, False:
 
 ```python
 figs.change_suggistives(True, False)
 ```
 
-## Herhangi bir bota mesaj gönderme
+## Send a message to any bot
 
 
-Figgs.ai'daki herhangi bir bota mesaj göndermek için room_id ve bot_id gerekmekte. Herhangi bir bota girdiğinizde onları link kısmında görebilirsiniz. Sağdaki room_id için soldaki bot_id için.
+To send a message to any bot in Figgs.ai you need room_id and bot_id. You can see them in the link section when you enter any bot. The right one is for room_id and the left one is for bot_id.
 
 ```python
 response = figs.send_message(
@@ -84,4 +80,4 @@ response = figs.send_message(
 print(response)
 ```
 
-## Şimdilik bu kadar.
+## That's all for now.
