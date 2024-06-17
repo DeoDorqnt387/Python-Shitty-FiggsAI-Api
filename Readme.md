@@ -1,4 +1,4 @@
-Example Usage:
+## Example Usage:
 
 ```python
 from figgs import figgs
