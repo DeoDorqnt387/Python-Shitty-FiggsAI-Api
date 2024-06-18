@@ -1,3 +1,7 @@
+## Stores the messages sent by users in payload.json format. but does not store the messages sent by the assistant, so the assistant's messages may not appear in the chat section of the site.(will be fixed in the future)
+
+/////////////////////////
+
 ## Example Usage:
 
 ```python
