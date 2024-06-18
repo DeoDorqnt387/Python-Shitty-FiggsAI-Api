@@ -1,4 +1,4 @@
-## Stores the messages sent by users in payload.json format. but does not store the messages sent by the assistant, so the assistant's messages may not appear in the chat section of the site.(will be fixed in the future)
+## It stores messages sent by users in payload.json format. but it does not store messages sent by the assistant, so the assistant's messages may not appear in the chat section of the site. (will be fixed in the future) sometimes it can be a problem. If you want to use a different chatbot, you need to clean up the payload.json.
 
 /////////////////////////
 
