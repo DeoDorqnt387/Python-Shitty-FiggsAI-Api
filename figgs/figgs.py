@@ -2,20 +2,45 @@ import requests
 import json
 import uuid
 
-from datetime import datetime
+from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
 
 disable_warnings(InsecureRequestWarning)
 
-current_time = datetime.now()
-created_time = current_time.isoformat()
+created_time = datetime.utcnow().replace(microsecond=0, tzinfo=timezone.utc).isoformat()
 
 class figgs:
     def __init__(self, url="https://www.figgs.ai/", auth=None):
         self.url = url 
         self.auth = auth
+        self.payload = self.load_payload()
+
+    def load_payload(self):
+        try:
+            with open('payload.json', 'r') as file:
+                try:
+                    payload_data = json.load(file)
+                except json.JSONDecodeError:
+                    payload_data = {
+                        "botId": None,
+                        "roomId": None,
+                        "previousMessagesVersion": [],
+                        "messages": []
+                    }
+        except FileNotFoundError:
+            payload_data = {
+                "botId": None,
+                "roomId": None,
+                "previousMessagesVersion": [],
+                "messages": []
+            }
+        return payload_data
+
+    def save_payload(self):
+        with open('payload.json', 'w') as file:
+            json.dump(self.payload, file)
 
     def fetch_page(self):
         response = requests.get(self.url, verify=False)
@@ -62,8 +87,8 @@ class figgs:
     
                 }
                 edit_url = f"https://www.figgs.ai/api/proxy/users/me"
-                requests.patch(edit_url, headers=headers, json=payload, cookies=cookies, verify=False)
-                print("Your Bio Changed To: ", bio)
+                response = requests.patch(edit_url, headers=headers, json=payload, cookies=cookies, verify=False)
+                return response
             else:
                 print("ded")
 
@@ -88,14 +113,13 @@ class figgs:
                 print("hide Suggestive: ", hide_suggestive, "Hide Suggestive Avatar: ", hide_suggestive_avatar)
             else:
                 print("ded")
-    def send_message(self, messages: str, room_id: str, bot_id : str):
-        soup = self.fetch_page()
-        if soup:
-           # session_url = "https://www.figgs.ai/api/auth/session"
-           # resp= requests.get(session_url, headers=headers,cookies=cookies, verify=False)
-           # print(resp.text)
 
-            headers ={
+    def send_message(self, messages: str, room_id: str, bot_id: str):
+        soup = self.fetch_page()
+        full_text = ""
+        
+        if soup:
+            headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
                 "Accept": "*/*",
                 "Content-Type": "application/json",
@@ -103,29 +127,20 @@ class figgs:
             cookies = {
                 'figs-auth-prod': self.auth
             }
-
-            payload = {
-                
-                "botId": bot_id,
-                "roomId": room_id,
-                "messages": [
-                    {
-                        "id": str(uuid.uuid4()),
-                        "role": "user",
-                        "content": messages,
-                        "created": created_time
-                    }
-                ]
-            }
+            self.payload["botId"] = bot_id
+            self.payload["roomId"] = room_id
+            self.payload["messages"].append({
+                "id": str(uuid.uuid4()),
+                "role": "user",
+                "content": messages,
+                "created": created_time
+            })
 
 
-            api_url = "https://api.figgs.ai/chat_completion"
-            response = requests.post(api_url, headers=headers,json=payload,cookies=cookies,verify=False)
             try:
-                response = requests.post(api_url, headers=headers, json=payload, cookies=cookies, verify=False)
-                response.raise_for_status()
-                
-                full_text = ""
+                api_url = "https://api.figgs.ai/chat_completion"
+                response = requests.post(api_url, headers=headers, json=self.payload, cookies=cookies, verify=False)
+
                 for line in response.iter_lines():
                     if line:
                         line_str = line.decode('utf-8')
@@ -134,13 +149,12 @@ class figgs:
                             try:
                                 if json_str.strip():
                                     data = json.loads(json_str)
-                                    if isinstance(data, dict) and "text" in data:
-                                        full_text += data["text"] + " "
+                                    if isinstance(data, dict) and "content" in data:
+                                        full_text += data["content"]
+
                             except json.JSONDecodeError as e:
-                                print()                
-                                
+                                print("JSON decode error:", e)
             except requests.exceptions.RequestException as e:
                 print(f"Request failed: {e}")
-        else:
-            print("There is no url specified")
+        self.save_payload()
         return full_text.strip()
