@@ -36,7 +36,7 @@ pip install figgs-ai
 from figgs import figgs
 ```
 
-To use the code below you need auth, you need to go to this site `https://www.figgs.ai/` and after registering, right click, inspect, find cookies in the applications section and copy the `figgs-auth-prod` part and paste it into the "your-auth-key" section:
+To use the code below you need auth, go to this site `https://www.figgs.ai/` and after registering, right click, inspect, find cookies in the applications section and copy the `figgs-auth-prod` part and paste it into the "your-auth-key" section:
 
 ```python
 figs = figgs(
