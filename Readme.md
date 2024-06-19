@@ -22,14 +22,6 @@ while True:
     print(response)
 ```
 
-## Installation
-
-PIP:
-
-```bash
-pip install figgs-ai
-```
-
 ## Usage
 
 ```python
