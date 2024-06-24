@@ -1,5 +1,5 @@
 ### An Api For FiggsAI
-![](https://github.com/DeoDorqnt387/Python-Shitty-FiggsAI-Api/blob/main/images/1.png)
+![](https://github.com/DeoDorqnt387/Python-Shitty-FiggsAI-Api/blob/main/images/imgu.png)
 
 ## Example Usage:
 
