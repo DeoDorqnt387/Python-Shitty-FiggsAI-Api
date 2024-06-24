@@ -5,20 +5,12 @@
 ## Example Usage:
 
 ```python
-from figgs import figgs
+from figgs.figgs import figgs
 
-auth = "your-auth-key"
-
-figs = figgs(
-    auth=auth,
-)
-
-room_id = "room-id"
-bot_id = "bot-id"
-
+figs = figgs()
 while True:
     your_message = input("You: ")
-    response = figs.send_message(your_message, room_id, bot_id)
+    response = figs.send_message(your_message)
     print(response)
 ```
 
@@ -31,9 +23,7 @@ from figgs import figgs
 To use the code below you need auth, go to this site `https://www.figgs.ai/` and after registering, right click, inspect, find cookies in the applications section and copy the `figgs-auth-prod` part and paste it into the "your-auth-key" section:
 
 ```python
-figs = figgs(
-    auth = "your-auth-key",
-)
+figs = figgs()
 ```
 
 Now you can use some methods:
@@ -70,8 +60,6 @@ To send a message to any bot in Figgs.ai you need room_id and bot_id. You can se
 ```python
 response = figs.send_message(
     "your-message",
-    "your-room-id",
-    "your-bot-id"
 )
 print(response)
 ```
