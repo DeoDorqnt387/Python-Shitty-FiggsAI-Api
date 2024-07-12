@@ -6,8 +6,15 @@ from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 from urllib3.exceptions import InsecureRequestWarning
 from urllib3 import disable_warnings
+from dotenv import load_dotenv
 
 disable_warnings(InsecureRequestWarning)
+
+load_dotenv()
+
+auth = os.getenv("AUTH")
+bot_id = os.getenv("BOT_ID")
+room_id = os.getenv("ROOM_ID")
 
 created_time = datetime.utcnow().replace(microsecond=0, tzinfo=timezone.utc).isoformat()
 
